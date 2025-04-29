@@ -2560,7 +2560,7 @@ requires-dist = [
     { name = "pandas", specifier = ">=2.2.2" },
     { name = "parse", specifier = ">=1.20.2" },
     { name = "pystac", specifier = ">=1.12.0" },
-    { name = "pystac", marker = "extra == 'docs'", specifier = "~=1.8" },
+    { name = "pystac", marker = "extra == 'docs'", specifier = ">=1.12" },
     { name = "rasterio", specifier = ">=1.3.10" },
     { name = "stactools", specifier = ">=0.4.0" },
 ]
