@@ -5,7 +5,14 @@ from typing import Optional, Union
 
 import pandas as pd
 import pystac
-from pystac import Collection, Extent, Item, SpatialExtent, TemporalExtent
+from pystac import (
+    Collection,
+    Extent,
+    Item,
+    ItemAssetDefinition,
+    SpatialExtent,
+    TemporalExtent,
+)
 from pystac.catalog import CatalogType
 from pystac.extensions.datacube import (
     DatacubeExtension,
@@ -61,15 +68,14 @@ INDEX_ASSET_DEFINITION = AssetDefinition(
         "roles": ["index"],
         "title": "Index file",
         DESCRIPTION: (
-            "The index file contains information on each message within "
-            "the GRIB2 file."
+            "The index file contains information on each message within the GRIB2 file."
         ),
     }
 )
 
 ITEM_BASE_ASSETS = {
     Product.sfc: {
-        ItemType.GRIB: AssetDefinition(
+        ItemType.GRIB: ItemAssetDefinition(
             {
                 "type": GRIB2_MEDIA_TYPE,
                 "roles": ["data"],
@@ -83,7 +89,7 @@ ITEM_BASE_ASSETS = {
         ItemType.INDEX: INDEX_ASSET_DEFINITION,
     },
     Product.subh: {
-        ItemType.GRIB: AssetDefinition(
+        ItemType.GRIB: ItemAssetDefinition(
             {
                 "type": GRIB2_MEDIA_TYPE,
                 "roles": ["data"],
@@ -98,7 +104,7 @@ ITEM_BASE_ASSETS = {
         ItemType.INDEX: INDEX_ASSET_DEFINITION,
     },
     Product.prs: {
-        ItemType.GRIB: AssetDefinition(
+        ItemType.GRIB: ItemAssetDefinition(
             {
                 "type": GRIB2_MEDIA_TYPE,
                 "roles": ["data"],
@@ -112,7 +118,7 @@ ITEM_BASE_ASSETS = {
         ItemType.INDEX: INDEX_ASSET_DEFINITION,
     },
     Product.nat: {
-        ItemType.GRIB: AssetDefinition(
+        ItemType.GRIB: ItemAssetDefinition(
             {
                 "type": GRIB2_MEDIA_TYPE,
                 "roles": ["data"],

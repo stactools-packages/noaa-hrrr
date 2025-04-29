@@ -9,7 +9,7 @@ number as needed.
 
 ## [Unreleased]
 
-- Nothing
+- Dependencies: upgrade to pystac>=1.12.0, ruff==0.11.7
 
 ## [0.1.2] - 2024-08-16
 

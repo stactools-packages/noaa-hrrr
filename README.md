@@ -185,27 +185,27 @@ Use `stac noaahrrr --help` to see all subcommands and options.
 ## Contributing
 
 We use [pre-commit](https://pre-commit.com/) to check any changes.
-To set up your development environment:
+To set up your development environment, install [uv](https://docs.astral.sh/uv/getting-started/installation/):
 
 ```shell
-pip install -e '.[dev]'
-pre-commit install
+uv sync
+uv run pre-commit install
 ```
 
 To check all files:
 
 ```shell
-pre-commit run --all-files
+uv run pre-commit run --all-files
 ```
 
 To run the tests:
 
 ```shell
-pytest -vv
+uv run pytest -vv
 ```
 
 If you've updated the STAC metadata output, update the examples:
 
 ```shell
-scripts/update-examples
+uv run scripts/update-examples
 ```
