@@ -32,7 +32,7 @@ from stactools.noaa_hrrr.constants import (
     FORECAST_VALID,
     GRIB_MESSAGE,
     LEVEL,
-    REFERENCE_TIME,
+    REFERENCE_DATETIME,
     START_BYTE,
     UNIT,
     VARIABLE,
@@ -245,7 +245,7 @@ def read_idx(idx: Union[str, StringIO]) -> pd.DataFrame:
         names=[
             GRIB_MESSAGE,
             START_BYTE,
-            REFERENCE_TIME,
+            REFERENCE_DATETIME,
             VARIABLE,
             LEVEL,
             FORECAST_VALID,
@@ -256,7 +256,7 @@ def read_idx(idx: Union[str, StringIO]) -> pd.DataFrame:
     )
 
     # Format the DataFrame
-    df[REFERENCE_TIME] = pd.to_datetime(df.reference_time, format="d=%Y%m%d%H")
+    df[REFERENCE_DATETIME] = pd.to_datetime(df.reference_datetime, format="d=%Y%m%d%H")
     df[START_BYTE] = df[START_BYTE].astype(int)
     df[BYTE_SIZE] = (df[START_BYTE].shift(-1) - df[START_BYTE]).astype(pd.Int64Dtype())
     df = df.reindex(
@@ -264,7 +264,7 @@ def read_idx(idx: Union[str, StringIO]) -> pd.DataFrame:
             GRIB_MESSAGE,
             START_BYTE,
             BYTE_SIZE,
-            REFERENCE_TIME,
+            REFERENCE_DATETIME,
             VARIABLE,
             LEVEL,
             FORECAST_VALID,

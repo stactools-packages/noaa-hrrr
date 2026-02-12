@@ -37,7 +37,7 @@
     52.62870335266728
   ],
   "properties": {
-    "forecast:reference_time": "2024-05-10T12:00:00Z",
+    "forecast:reference_datetime": "2024-05-10T12:00:00Z",
     "forecast:horizon": "PT0H",
     "noaa-hrrr:forecast_cycle_type": "extended",
     "noaa-hrrr:region": "conus",

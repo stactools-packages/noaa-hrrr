@@ -70,9 +70,9 @@ def test_create_item(
         forecast_hour=forecast_hour,
         product=product.value,
     )
-    assert item.properties["forecast:reference_time"] == reference_datetime.strftime(
-        "%Y-%m-%dT%H:%M:%SZ"
-    )
+    assert item.properties[
+        "forecast:reference_datetime"
+    ] == reference_datetime.strftime("%Y-%m-%dT%H:%M:%SZ")
     item.validate()
 
     assert (

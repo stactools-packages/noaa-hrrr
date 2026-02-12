@@ -34,7 +34,7 @@ from stactools.noaa_hrrr.constants import (
     GRIB_MESSAGES,
     ITEM_ID_FORMAT,
     LEVEL,
-    REFERENCE_TIME,
+    REFERENCE_DATETIME,
     RESOLUTION_METERS,
     START_BYTE,
     UNIT,
@@ -333,7 +333,7 @@ def create_collection(
                     "axis": "y",
                 }
             ),
-            REFERENCE_TIME: Dimension(
+            REFERENCE_DATETIME: Dimension(
                 properties={
                     "type": DimensionType.TEMPORAL,
                     "extent": [
@@ -391,7 +391,7 @@ def create_collection(
                     dimensions=[
                         "x",
                         "y",
-                        REFERENCE_TIME,
+                        REFERENCE_DATETIME,
                         VALID_TIME,
                         LEVEL,
                         FORECAST_TYPE,
@@ -552,7 +552,7 @@ def create_item_from_idx_df(
         datetime=forecast_datetime,
         collection=collection,
         properties={
-            "forecast:reference_time": reference_datetime.strftime(
+            "forecast:reference_datetime": reference_datetime.strftime(
                 "%Y-%m-%dT%H:%M:%SZ"
             ),
             "forecast:horizon": f"PT{forecast_hour}H",

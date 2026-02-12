@@ -11,6 +11,7 @@ number as needed.
 
 - Dependencies: upgrade to pystac>=1.12.0, ruff==0.11.7
 - BREAKING CHANGE: Split `grib:layers` into `grib:messages` and `grib:layer_definitions`
+- fix: `forecast:reference_time` -> `forecast:reference_datetime`
 
 ## [0.1.2] - 2024-08-16
 

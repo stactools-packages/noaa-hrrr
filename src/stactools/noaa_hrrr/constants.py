@@ -12,7 +12,7 @@ VSI_PATH_FORMAT = "/vsisubfile/{start_byte}_{byte_size},/vsicurl/{grib_url}"
 
 START_BYTE = "start_byte"
 BYTE_SIZE = "byte_size"
-REFERENCE_TIME = "reference_time"
+REFERENCE_DATETIME = "reference_datetime"
 VALID_TIME = "valid_time"
 FORECAST_HOUR = "forecast_hour"
 FORECAST_VALID = "forecast_valid"

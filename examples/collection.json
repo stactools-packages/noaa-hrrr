@@ -1300,7 +1300,7 @@
       ],
       "axis": "y"
     },
-    "reference_time": {
+    "reference_datetime": {
       "type": "temporal",
       "extent": [
         "2021-03-21T00:00:00Z",
@@ -1376,9 +1376,9 @@
       "type": "temporal",
       "description": "Either point-in-time, periodic summary, or cumulative summary.",
       "values": [
+        "periodic_summary",
         "cumulative_summary",
-        "point_in_time",
-        "periodic_summary"
+        "point_in_time"
       ]
     }
   },
@@ -1387,7 +1387,7 @@
       "dimensions": [
         "x",
         "y",
-        "reference_time",
+        "reference_datetime",
         "valid_time",
         "level",
         "forecast_type"
@@ -1408,7 +1408,7 @@
       "dimensions": [
         "x",
         "y",
-        "reference_time",
+        "reference_datetime",
         "valid_time",
         "level",
         "forecast_type"
@@ -1429,7 +1429,7 @@
       "dimensions": [
         "x",
         "y",
-        "reference_time",
+        "reference_datetime",
         "valid_time",
         "level",
         "forecast_type"
@@ -1442,8 +1442,8 @@
           "surface"
         ],
         "forecast_type": [
-          "cumulative_summary",
-          "periodic_summary"
+          "periodic_summary",
+          "cumulative_summary"
         ]
       }
     },
@@ -1451,7 +1451,7 @@
       "dimensions": [
         "x",
         "y",
-        "reference_time",
+        "reference_datetime",
         "valid_time",
         "level",
         "forecast_type"
@@ -1464,8 +1464,8 @@
           "surface"
         ],
         "forecast_type": [
-          "cumulative_summary",
-          "periodic_summary"
+          "periodic_summary",
+          "cumulative_summary"
         ]
       }
     },
@@ -1473,7 +1473,7 @@
       "dimensions": [
         "x",
         "y",
-        "reference_time",
+        "reference_datetime",
         "valid_time",
         "level",
         "forecast_type"
@@ -1494,7 +1494,7 @@
       "dimensions": [
         "x",
         "y",
-        "reference_time",
+        "reference_datetime",
         "valid_time",
         "level",
         "forecast_type"
@@ -1519,7 +1519,7 @@
       "dimensions": [
         "x",
         "y",
-        "reference_time",
+        "reference_datetime",
         "valid_time",
         "level",
         "forecast_type"
@@ -1540,7 +1540,7 @@
       "dimensions": [
         "x",
         "y",
-        "reference_time",
+        "reference_datetime",
         "valid_time",
         "level",
         "forecast_type"
@@ -1561,7 +1561,7 @@
       "dimensions": [
         "x",
         "y",
-        "reference_time",
+        "reference_datetime",
         "valid_time",
         "level",
         "forecast_type"
@@ -1582,7 +1582,7 @@
       "dimensions": [
         "x",
         "y",
-        "reference_time",
+        "reference_datetime",
         "valid_time",
         "level",
         "forecast_type"
@@ -1606,7 +1606,7 @@
       "dimensions": [
         "x",
         "y",
-        "reference_time",
+        "reference_datetime",
         "valid_time",
         "level",
         "forecast_type"
@@ -1627,7 +1627,7 @@
       "dimensions": [
         "x",
         "y",
-        "reference_time",
+        "reference_datetime",
         "valid_time",
         "level",
         "forecast_type"
@@ -1648,7 +1648,7 @@
       "dimensions": [
         "x",
         "y",
-        "reference_time",
+        "reference_datetime",
         "valid_time",
         "level",
         "forecast_type"
@@ -1669,7 +1669,7 @@
       "dimensions": [
         "x",
         "y",
-        "reference_time",
+        "reference_datetime",
         "valid_time",
         "level",
         "forecast_type"
@@ -1690,7 +1690,7 @@
       "dimensions": [
         "x",
         "y",
-        "reference_time",
+        "reference_datetime",
         "valid_time",
         "level",
         "forecast_type"
@@ -1711,7 +1711,7 @@
       "dimensions": [
         "x",
         "y",
-        "reference_time",
+        "reference_datetime",
         "valid_time",
         "level",
         "forecast_type"
@@ -1732,7 +1732,7 @@
       "dimensions": [
         "x",
         "y",
-        "reference_time",
+        "reference_datetime",
         "valid_time",
         "level",
         "forecast_type"
@@ -1758,7 +1758,7 @@
       "dimensions": [
         "x",
         "y",
-        "reference_time",
+        "reference_datetime",
         "valid_time",
         "level",
         "forecast_type"
@@ -1779,7 +1779,7 @@
       "dimensions": [
         "x",
         "y",
-        "reference_time",
+        "reference_datetime",
         "valid_time",
         "level",
         "forecast_type"
@@ -1793,8 +1793,8 @@
           "0.5-0.8 sigma layer"
         ],
         "forecast_type": [
-          "point_in_time",
-          "periodic_summary"
+          "periodic_summary",
+          "point_in_time"
         ]
       }
     },
@@ -1802,7 +1802,7 @@
       "dimensions": [
         "x",
         "y",
-        "reference_time",
+        "reference_datetime",
         "valid_time",
         "level",
         "forecast_type"
@@ -1823,7 +1823,7 @@
       "dimensions": [
         "x",
         "y",
-        "reference_time",
+        "reference_datetime",
         "valid_time",
         "level",
         "forecast_type"
@@ -1836,8 +1836,8 @@
           "surface"
         ],
         "forecast_type": [
-          "cumulative_summary",
-          "periodic_summary"
+          "periodic_summary",
+          "cumulative_summary"
         ]
       }
     },
@@ -1845,7 +1845,7 @@
       "dimensions": [
         "x",
         "y",
-        "reference_time",
+        "reference_datetime",
         "valid_time",
         "level",
         "forecast_type"
@@ -1858,8 +1858,8 @@
           "surface"
         ],
         "forecast_type": [
-          "cumulative_summary",
-          "periodic_summary"
+          "periodic_summary",
+          "cumulative_summary"
         ]
       }
     },
@@ -1867,7 +1867,7 @@
       "dimensions": [
         "x",
         "y",
-        "reference_time",
+        "reference_datetime",
         "valid_time",
         "level",
         "forecast_type"
@@ -1888,7 +1888,7 @@
       "dimensions": [
         "x",
         "y",
-        "reference_time",
+        "reference_datetime",
         "valid_time",
         "level",
         "forecast_type"
@@ -1909,7 +1909,7 @@
       "dimensions": [
         "x",
         "y",
-        "reference_time",
+        "reference_datetime",
         "valid_time",
         "level",
         "forecast_type"
@@ -1932,7 +1932,7 @@
       "dimensions": [
         "x",
         "y",
-        "reference_time",
+        "reference_datetime",
         "valid_time",
         "level",
         "forecast_type"
@@ -1953,7 +1953,7 @@
       "dimensions": [
         "x",
         "y",
-        "reference_time",
+        "reference_datetime",
         "valid_time",
         "level",
         "forecast_type"
@@ -1988,7 +1988,7 @@
       "dimensions": [
         "x",
         "y",
-        "reference_time",
+        "reference_datetime",
         "valid_time",
         "level",
         "forecast_type"
@@ -2010,7 +2010,7 @@
       "dimensions": [
         "x",
         "y",
-        "reference_time",
+        "reference_datetime",
         "valid_time",
         "level",
         "forecast_type"
@@ -2031,7 +2031,7 @@
       "dimensions": [
         "x",
         "y",
-        "reference_time",
+        "reference_datetime",
         "valid_time",
         "level",
         "forecast_type"
@@ -2052,7 +2052,7 @@
       "dimensions": [
         "x",
         "y",
-        "reference_time",
+        "reference_datetime",
         "valid_time",
         "level",
         "forecast_type"
@@ -2073,7 +2073,7 @@
       "dimensions": [
         "x",
         "y",
-        "reference_time",
+        "reference_datetime",
         "valid_time",
         "level",
         "forecast_type"
@@ -2094,7 +2094,7 @@
       "dimensions": [
         "x",
         "y",
-        "reference_time",
+        "reference_datetime",
         "valid_time",
         "level",
         "forecast_type"
@@ -2115,7 +2115,7 @@
       "dimensions": [
         "x",
         "y",
-        "reference_time",
+        "reference_datetime",
         "valid_time",
         "level",
         "forecast_type"
@@ -2136,7 +2136,7 @@
       "dimensions": [
         "x",
         "y",
-        "reference_time",
+        "reference_datetime",
         "valid_time",
         "level",
         "forecast_type"
@@ -2157,7 +2157,7 @@
       "dimensions": [
         "x",
         "y",
-        "reference_time",
+        "reference_datetime",
         "valid_time",
         "level",
         "forecast_type"
@@ -2178,7 +2178,7 @@
       "dimensions": [
         "x",
         "y",
-        "reference_time",
+        "reference_datetime",
         "valid_time",
         "level",
         "forecast_type"
@@ -2199,7 +2199,7 @@
       "dimensions": [
         "x",
         "y",
-        "reference_time",
+        "reference_datetime",
         "valid_time",
         "level",
         "forecast_type"
@@ -2220,7 +2220,7 @@
       "dimensions": [
         "x",
         "y",
-        "reference_time",
+        "reference_datetime",
         "valid_time",
         "level",
         "forecast_type"
@@ -2241,7 +2241,7 @@
       "dimensions": [
         "x",
         "y",
-        "reference_time",
+        "reference_datetime",
         "valid_time",
         "level",
         "forecast_type"
@@ -2262,7 +2262,7 @@
       "dimensions": [
         "x",
         "y",
-        "reference_time",
+        "reference_datetime",
         "valid_time",
         "level",
         "forecast_type"
@@ -2283,7 +2283,7 @@
       "dimensions": [
         "x",
         "y",
-        "reference_time",
+        "reference_datetime",
         "valid_time",
         "level",
         "forecast_type"
@@ -2304,7 +2304,7 @@
       "dimensions": [
         "x",
         "y",
-        "reference_time",
+        "reference_datetime",
         "valid_time",
         "level",
         "forecast_type"
@@ -2327,7 +2327,7 @@
       "dimensions": [
         "x",
         "y",
-        "reference_time",
+        "reference_datetime",
         "valid_time",
         "level",
         "forecast_type"
@@ -2348,7 +2348,7 @@
       "dimensions": [
         "x",
         "y",
-        "reference_time",
+        "reference_datetime",
         "valid_time",
         "level",
         "forecast_type"
@@ -2371,7 +2371,7 @@
       "dimensions": [
         "x",
         "y",
-        "reference_time",
+        "reference_datetime",
         "valid_time",
         "level",
         "forecast_type"
@@ -2392,7 +2392,7 @@
       "dimensions": [
         "x",
         "y",
-        "reference_time",
+        "reference_datetime",
         "valid_time",
         "level",
         "forecast_type"
@@ -2413,7 +2413,7 @@
       "dimensions": [
         "x",
         "y",
-        "reference_time",
+        "reference_datetime",
         "valid_time",
         "level",
         "forecast_type"
@@ -2434,7 +2434,7 @@
       "dimensions": [
         "x",
         "y",
-        "reference_time",
+        "reference_datetime",
         "valid_time",
         "level",
         "forecast_type"
@@ -2459,7 +2459,7 @@
       "dimensions": [
         "x",
         "y",
-        "reference_time",
+        "reference_datetime",
         "valid_time",
         "level",
         "forecast_type"
@@ -2480,7 +2480,7 @@
       "dimensions": [
         "x",
         "y",
-        "reference_time",
+        "reference_datetime",
         "valid_time",
         "level",
         "forecast_type"
@@ -2501,7 +2501,7 @@
       "dimensions": [
         "x",
         "y",
-        "reference_time",
+        "reference_datetime",
         "valid_time",
         "level",
         "forecast_type"
@@ -2516,8 +2516,8 @@
           "263 K level"
         ],
         "forecast_type": [
-          "point_in_time",
-          "periodic_summary"
+          "periodic_summary",
+          "point_in_time"
         ]
       }
     },
@@ -2525,7 +2525,7 @@
       "dimensions": [
         "x",
         "y",
-        "reference_time",
+        "reference_datetime",
         "valid_time",
         "level",
         "forecast_type"
@@ -2547,7 +2547,7 @@
       "dimensions": [
         "x",
         "y",
-        "reference_time",
+        "reference_datetime",
         "valid_time",
         "level",
         "forecast_type"
@@ -2568,7 +2568,7 @@
       "dimensions": [
         "x",
         "y",
-        "reference_time",
+        "reference_datetime",
         "valid_time",
         "level",
         "forecast_type"
@@ -2591,7 +2591,7 @@
       "dimensions": [
         "x",
         "y",
-        "reference_time",
+        "reference_datetime",
         "valid_time",
         "level",
         "forecast_type"
@@ -2612,7 +2612,7 @@
       "dimensions": [
         "x",
         "y",
-        "reference_time",
+        "reference_datetime",
         "valid_time",
         "level",
         "forecast_type"
@@ -2633,7 +2633,7 @@
       "dimensions": [
         "x",
         "y",
-        "reference_time",
+        "reference_datetime",
         "valid_time",
         "level",
         "forecast_type"
@@ -2654,7 +2654,7 @@
       "dimensions": [
         "x",
         "y",
-        "reference_time",
+        "reference_datetime",
         "valid_time",
         "level",
         "forecast_type"
@@ -2675,7 +2675,7 @@
       "dimensions": [
         "x",
         "y",
-        "reference_time",
+        "reference_datetime",
         "valid_time",
         "level",
         "forecast_type"
@@ -2696,7 +2696,7 @@
       "dimensions": [
         "x",
         "y",
-        "reference_time",
+        "reference_datetime",
         "valid_time",
         "level",
         "forecast_type"
@@ -2717,7 +2717,7 @@
       "dimensions": [
         "x",
         "y",
-        "reference_time",
+        "reference_datetime",
         "valid_time",
         "level",
         "forecast_type"
@@ -2738,7 +2738,7 @@
       "dimensions": [
         "x",
         "y",
-        "reference_time",
+        "reference_datetime",
         "valid_time",
         "level",
         "forecast_type"
@@ -2759,7 +2759,7 @@
       "dimensions": [
         "x",
         "y",
-        "reference_time",
+        "reference_datetime",
         "valid_time",
         "level",
         "forecast_type"
@@ -2780,7 +2780,7 @@
       "dimensions": [
         "x",
         "y",
-        "reference_time",
+        "reference_datetime",
         "valid_time",
         "level",
         "forecast_type"
@@ -2801,7 +2801,7 @@
       "dimensions": [
         "x",
         "y",
-        "reference_time",
+        "reference_datetime",
         "valid_time",
         "level",
         "forecast_type"
@@ -2822,7 +2822,7 @@
       "dimensions": [
         "x",
         "y",
-        "reference_time",
+        "reference_datetime",
         "valid_time",
         "level",
         "forecast_type"
@@ -2844,7 +2844,7 @@
       "dimensions": [
         "x",
         "y",
-        "reference_time",
+        "reference_datetime",
         "valid_time",
         "level",
         "forecast_type"
@@ -2865,7 +2865,7 @@
       "dimensions": [
         "x",
         "y",
-        "reference_time",
+        "reference_datetime",
         "valid_time",
         "level",
         "forecast_type"
@@ -2892,7 +2892,7 @@
       "dimensions": [
         "x",
         "y",
-        "reference_time",
+        "reference_datetime",
         "valid_time",
         "level",
         "forecast_type"
@@ -2921,7 +2921,7 @@
       "dimensions": [
         "x",
         "y",
-        "reference_time",
+        "reference_datetime",
         "valid_time",
         "level",
         "forecast_type"
@@ -2943,7 +2943,7 @@
       "dimensions": [
         "x",
         "y",
-        "reference_time",
+        "reference_datetime",
         "valid_time",
         "level",
         "forecast_type"
@@ -2964,7 +2964,7 @@
       "dimensions": [
         "x",
         "y",
-        "reference_time",
+        "reference_datetime",
         "valid_time",
         "level",
         "forecast_type"
@@ -2986,7 +2986,7 @@
       "dimensions": [
         "x",
         "y",
-        "reference_time",
+        "reference_datetime",
         "valid_time",
         "level",
         "forecast_type"
@@ -3007,7 +3007,7 @@
       "dimensions": [
         "x",
         "y",
-        "reference_time",
+        "reference_datetime",
         "valid_time",
         "level",
         "forecast_type"
@@ -3028,7 +3028,7 @@
       "dimensions": [
         "x",
         "y",
-        "reference_time",
+        "reference_datetime",
         "valid_time",
         "level",
         "forecast_type"
@@ -3049,7 +3049,7 @@
       "dimensions": [
         "x",
         "y",
-        "reference_time",
+        "reference_datetime",
         "valid_time",
         "level",
         "forecast_type"
@@ -3078,7 +3078,7 @@
       "dimensions": [
         "x",
         "y",
-        "reference_time",
+        "reference_datetime",
         "valid_time",
         "level",
         "forecast_type"
@@ -3099,7 +3099,7 @@
       "dimensions": [
         "x",
         "y",
-        "reference_time",
+        "reference_datetime",
         "valid_time",
         "level",
         "forecast_type"
@@ -3120,7 +3120,7 @@
       "dimensions": [
         "x",
         "y",
-        "reference_time",
+        "reference_datetime",
         "valid_time",
         "level",
         "forecast_type"
@@ -3141,7 +3141,7 @@
       "dimensions": [
         "x",
         "y",
-        "reference_time",
+        "reference_datetime",
         "valid_time",
         "level",
         "forecast_type"
@@ -3162,7 +3162,7 @@
       "dimensions": [
         "x",
         "y",
-        "reference_time",
+        "reference_datetime",
         "valid_time",
         "level",
         "forecast_type"
@@ -3184,7 +3184,7 @@
       "dimensions": [
         "x",
         "y",
-        "reference_time",
+        "reference_datetime",
         "valid_time",
         "level",
         "forecast_type"
@@ -3206,7 +3206,7 @@
       "dimensions": [
         "x",
         "y",
-        "reference_time",
+        "reference_datetime",
         "valid_time",
         "level",
         "forecast_type"
@@ -3219,9 +3219,9 @@
           "surface"
         ],
         "forecast_type": [
+          "periodic_summary",
           "cumulative_summary",
-          "point_in_time",
-          "periodic_summary"
+          "point_in_time"
         ]
       }
     },
@@ -3229,7 +3229,7 @@
       "dimensions": [
         "x",
         "y",
-        "reference_time",
+        "reference_datetime",
         "valid_time",
         "level",
         "forecast_type"
