@@ -68,34 +68,38 @@ the following structure:
    particular forecast hour from a reference time, so you need to combine data
    from multiple items to construct a time series for a forecast.
 
-3. **`grib:layers`**: Within each `"grib"` asset, a `grib:layers` property details
-   each layer's information, including description, units, and byte ranges.
+3. **`grib:messages`**: Within each `"grib"` asset, a `grib:messages` property describes
+   each layer's GRIB message index within the GRIB2 file.
    This enables applications to access specific parts of the GRIB2 files without
    downloading the entire file.
 
-    - We intend to propose a `GRIB` STAC extension with the `grib:layers` property
-      for storing byte-ranges after testing this specification out on other GRIB2
-      datasets.
-    - The layer-level metadata is worth storing in STAC because you can construct
-      URIs for specific layers that GDAL can read using either `/vsisubfile` or
-      `vrt://`:
-      - `/vsisubfile/{start_byte}_{byte_size},/vsicurl/{grib_href}`
-      - `vrt:///vsicurl/{grib_href}?bands={grib_message}`, where `grib_message` is
-        the index of the layer within the GRIB2 file.
-        - under the hood, GDAL's `vrt` driver is reading the sidecar .grib2.idx file
-            and translating it into a `/vsisubfile` URI.
+4. **`grib:layer_definitions`**: This field is meant to be populated at in the
+   item-assets definitions at the collection level.
+   It describes the variable name, units, and other relevant properties for the each
+   layer within the GRIB file.
+
+- We intend to propose a `GRIB` STAC extension with the `grib:messages` and
+  `grib:layer_definitions` properties
+  for describing the grib message indexes of the variables within the GRIB
+  files.
+- The layer-level metadata is worth storing in STAC because you can construct
+  URIs for specific layers that GDAL can read using the VRT URI syntax`vrt://`:
+  - `vrt:///vsicurl/{grib_href}?bands={grib_message}`, where `grib_message` is
+    the index of the layer within the GRIB2 file.
+    - under the hood, GDAL's `vrt` driver is reading the sidecar .grib2.idx file
+        and translating it into a `/vsisubfile` URI.
 
 ### Advantages
 
-- Applications can use `grib:layers` to create layer-specific data sets, facilitating
-efficient data handling.
+- Applications can use `grib:layer_definitions` and `grib:messages` to create
+  layer-specific data sets, facilitating efficient data handling.
 - Splitting by region and product allows defining coherent collection-level datacube
 metadata, enhancing accessibility.
 
 ### Disadvantages
 
-- Storing layer-level metadata like byte ranges in the STAC metadata bloats the STAC
-  items because there are hundreds to thousands of layers in each GRIB2 file.
+~~- Storing layer-level metadata like byte ranges in the STAC metadata bloats the
+  STAC items because there are hundreds to thousands of layers in each GRIB2 file.~~
 
 For more details, please refer to the related [issue discussion](https://github.com/developmentseed/noaa-hrrr/issues/1)
 and pull requests [#3](https://github.com/developmentseed/noaa-hrrr/pull/3) and

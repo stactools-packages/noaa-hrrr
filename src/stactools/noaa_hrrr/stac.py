@@ -1,5 +1,4 @@
 import logging
-import multiprocessing as mp
 from datetime import datetime, timedelta
 from typing import Optional, Union
 
@@ -21,7 +20,6 @@ from pystac.extensions.datacube import (
     Variable,
     VariableType,
 )
-from pystac.extensions.item_assets import AssetDefinition, ItemAssetsExtension
 from pystac.item_collection import ItemCollection
 from pystac.provider import Provider, ProviderRole
 
@@ -31,8 +29,9 @@ from stactools.noaa_hrrr.constants import (
     DESCRIPTION,
     FORECAST_TYPE,
     FORECAST_VALID,
-    GRIB_LAYERS,
+    GRIB_LAYER_DEFINITIONS,
     GRIB_MESSAGE,
+    GRIB_MESSAGES,
     ITEM_ID_FORMAT,
     LEVEL,
     REFERENCE_TIME,
@@ -62,7 +61,7 @@ from stactools.noaa_hrrr.metadata import (
 
 GRIB2_MEDIA_TYPE = "application/wmo-GRIB2"
 NDJSON_MEDIA_TYPE = "application/x-ndjson"
-INDEX_ASSET_DEFINITION = AssetDefinition(
+INDEX_ASSET_DEFINITION = ItemAssetDefinition(
     {
         "type": NDJSON_MEDIA_TYPE,
         "roles": ["index"],
@@ -267,17 +266,14 @@ def create_collection(
 
     collection.add_links(links)
 
-    # item assets extension
-    item_assets_ext = ItemAssetsExtension.ext(collection, add_if_missing=True)
-
     assets = {
         item_type.value: item_asset
         for item_type, item_asset in ITEM_BASE_ASSETS[product].items()
     }
 
-    # fill out the grib:layers for the grib asset
+    # fill out the grib:layer_definitions for the grib asset
     grib_asset = assets[ItemType.GRIB.value]
-    grib_asset.properties[GRIB_LAYERS] = {}
+    grib_asset.properties[GRIB_LAYER_DEFINITIONS] = {}
 
     for _, row in inventory_df[
         [
@@ -298,12 +294,12 @@ def create_collection(
                 str(forecast_layer_type),
             ]
         )
-        grib_asset.properties[GRIB_LAYERS][layer_key] = {
+        grib_asset.properties[GRIB_LAYER_DEFINITIONS][layer_key] = {
             **row,
             "forecast_layer_type": forecast_layer_type.forecast_layer_type,
         }
 
-    item_assets_ext.item_assets = assets
+    collection.item_assets = assets
 
     # define the datacube metadata using the inventory files for this
     # region x product
@@ -573,9 +569,13 @@ def create_item_from_idx_df(
         ItemType.INDEX
     ].create_asset(idx_url)
 
-    # create an asset for each row in the inventory dataframe
+    # create grib:messages mapping for the grib asset
     grib_asset = item.assets[ItemType.GRIB.value]
-    grib_asset.extra_fields[GRIB_LAYERS] = {}
+
+    # Remove grib:layer_definitions from item assets (should only be in collection item_assets)
+    grib_asset.extra_fields.pop(GRIB_LAYER_DEFINITIONS, None)
+
+    grib_asset.extra_fields[GRIB_MESSAGES] = {}
     for _, row in idx_df[
         [
             DESCRIPTION,
@@ -604,10 +604,7 @@ def create_item_from_idx_df(
         if pd.isna(row.byte_size):
             row.byte_size = None
 
-        grib_asset.extra_fields[GRIB_LAYERS][layer_key] = {
-            **row,
-            **forecast_layer_type.asset_properties(),
-        }
+        grib_asset.extra_fields[GRIB_MESSAGES][layer_key] = row["grib_message"]
 
     return item
 
@@ -669,7 +666,6 @@ def create_item_collection(
         reference_date += one_day
 
     print(f"creating {len(tasks)} items")
-    with mp.Pool(4) as pool:
-        items = pool.starmap(create_item_safe, tasks)
+    items = [create_item_safe(*task) for task in tasks]
 
     return ItemCollection(item for item in items if item is not None)

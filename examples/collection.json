@@ -1,7 +1,7 @@
 {
   "type": "Collection",
   "id": "noaa-hrrr-sfc-conus",
-  "stac_version": "1.0.0",
+  "stac_version": "1.1.0",
   "description": "The NOAA HRRR is a real-time 3km resolution, hourly updated, cloud-resolving, convection-allowing atmospheric model, initialized by 3km grids with 3km radar assimilation. Radar data is assimilated in the HRRR every 15 min over a 1-hour period adding further detail to that provided by the hourly data assimilation from the 13km radar-enhanced Rapid Refresh (RAP) system. This specific collection represents 2D surface levels for the conus region.",
   "links": [
     {
@@ -25,16 +25,15 @@
     {
       "rel": "item",
       "href": "./hrrr-conus-sfc-2024-05-10T12-FH0/hrrr-conus-sfc-2024-05-10T12-FH0.json",
-      "type": "application/json"
+      "type": "application/geo+json"
     },
     {
       "rel": "item",
       "href": "./hrrr-conus-sfc-2024-05-10T12-FH2/hrrr-conus-sfc-2024-05-10T12-FH2.json",
-      "type": "application/json"
+      "type": "application/geo+json"
     }
   ],
   "stac_extensions": [
-    "https://stac-extensions.github.io/item-assets/v1.0.0/schema.json",
     "https://stac-extensions.github.io/datacube/v2.2.0/schema.json"
   ],
   "item_assets": {
@@ -45,7 +44,7 @@
       ],
       "title": "2D Surface Levels",
       "description": "2D Surface Level forecast data as a grib2 file. Subsets of the data can be loaded using the provided byte range.",
-      "grib:layers": {
+      "grib:layer_definitions": {
         "REFC__entire_atmosphere__point_in_time": {
           "description": "Composite reflectivity",
           "unit": "dB",
@@ -1377,9 +1376,9 @@
       "type": "temporal",
       "description": "Either point-in-time, periodic summary, or cumulative summary.",
       "values": [
+        "cumulative_summary",
         "point_in_time",
-        "periodic_summary",
-        "cumulative_summary"
+        "periodic_summary"
       ]
     }
   },
@@ -3220,9 +3219,9 @@
           "surface"
         ],
         "forecast_type": [
+          "cumulative_summary",
           "point_in_time",
-          "periodic_summary",
-          "cumulative_summary"
+          "periodic_summary"
         ]
       }
     },
