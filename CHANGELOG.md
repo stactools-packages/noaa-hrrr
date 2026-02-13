@@ -9,8 +9,13 @@ number as needed.
 
 ## [Unreleased]
 
+- Nothing
+
+## [1.0.0] - 2026-02-13
+
 - Dependencies: upgrade to pystac>=1.12.0, ruff==0.11.7
-- BREAKING CHANGE: Split `grib:layers` into `grib:messages` and `grib:layer_definitions`
+- change: Split `grib:layers` into `grib:messages` and `grib:layer_definitions`
+  BREAKING CHANGE
 - fix: `forecast:reference_time` -> `forecast:reference_datetime`
 
 ## [0.1.2] - 2024-08-16
@@ -28,6 +33,7 @@ number as needed.
 - Item creation
 - `grib:layers` asset property for describing individual layers within a GRIB2 file
 
+[1.0.0]: <https://github.com/developmentseed/noaa-hrrr/releases/tag/1.0.0>
 [0.1.2]: <https://github.com/developmentseed/noaa-hrrr/releases/tag/0.1.2>
 [0.1.1]: <https://github.com/developmentseed/noaa-hrrr/releases/tag/0.1.1>
 [0.1.0]: <https://github.com/developmentseed/noaa-hrrr/releases/tag/0.1.0>
