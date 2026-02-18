@@ -180,15 +180,18 @@ def create_collection(
     region: Region,
     product: Product,
     cloud_provider: CloudProvider,
+    include_datacube_ext: bool = True,
 ) -> Collection:
     """Creates a STAC Collection.
 
     Args:
-        product (Product): The product for this collection, must be one of the members
-            of the Product Enum.
-        cloud_provider (CloudProvider): cloud provider for the assets. Must be a member
-            of the CloudProvider Enum. Each cloud_provider has data available from a
-            different start date.
+        region: The region for this collection.
+        product: The product for this collection.
+        cloud_provider: The cloud provider for the assets. Each cloud provider
+            has data available from a different start date.
+        include_datacube_ext: Whether to include the datacube extension in the
+            collection.
+
     Returns:
         Collection: STAC Collection object
     """
@@ -301,126 +304,133 @@ def create_collection(
 
     collection.item_assets = assets
 
-    # define the datacube metadata using the inventory files for this
-    # region x product
-    datacube_ext = DatacubeExtension.ext(collection, add_if_missing=True)
+    if include_datacube_ext:
+        # define the datacube metadata using the inventory files for this
+        # region x product
+        datacube_ext = DatacubeExtension.ext(collection, add_if_missing=True)
 
-    variable_df = inventory_df.set_index(keys=[VARIABLE, DESCRIPTION, UNIT]).sort_index(
-        level=VARIABLE
-    )
+        variable_df = inventory_df.set_index(
+            keys=[VARIABLE, DESCRIPTION, UNIT]
+        ).sort_index(level=VARIABLE)
 
-    datacube_ext.apply(
-        dimensions={
-            "x": Dimension(
-                properties={
-                    "type": DimensionType.SPATIAL,
-                    "reference_system": region_config.item_crs.to_wkt(),
-                    "extent": [
-                        region_config.item_bbox_proj[0] + RESOLUTION_METERS / 2,
-                        region_config.item_bbox_proj[2] - RESOLUTION_METERS / 2,
-                    ],
-                    "axis": "x",
-                }
-            ),
-            "y": Dimension(
-                properties={
-                    "type": DimensionType.SPATIAL,
-                    "reference_system": region_config.item_crs.to_wkt(),
-                    "extent": [
-                        region_config.item_bbox_proj[1] + RESOLUTION_METERS / 2,
-                        region_config.item_bbox_proj[3] - RESOLUTION_METERS / 2,
-                    ],
-                    "axis": "y",
-                }
-            ),
-            REFERENCE_DATETIME: Dimension(
-                properties={
-                    "type": DimensionType.TEMPORAL,
-                    "extent": [
-                        cloud_provider_config.start_date.strftime("%Y-%m-%dT%H:%M:%SZ"),
-                        None,
-                    ],
-                    "step": "PT1H" if region == Region.conus else "PT3H",
-                }
-            ),
-            VALID_TIME: Dimension(
-                properties={
-                    "type": DimensionType.TEMPORAL,
-                    "extent": [
-                        cloud_provider_config.start_date.strftime("%Y-%m-%dT%H:%M:%SZ"),
-                        None,
-                    ],
-                    "step": "PT15M" if product == Product.subh else "PT1H",
-                }
-            ),
-            # could be a z spatial dimension but the units are not consistent
-            LEVEL: Dimension(
-                properties={
-                    "type": "atmospheric level",
-                    "description": (
-                        "The atmospheric level for which the forecast is applicable, "
-                        "e.g. surface, top of atmosphere, 100 m above ground, etc."
-                    ),
-                    "values": list(sorted(set(inventory_df[LEVEL].unique()))),
-                }
-            ),
-            FORECAST_TYPE: Dimension(
-                properties={
-                    "type": DimensionType.TEMPORAL,
-                    "description": (
-                        "Either point-in-time, periodic summary, or cumulative summary."
-                    ),
-                    "values": list(
-                        set(
-                            [
-                                ForecastLayerType.from_str(
-                                    forecast_valid
-                                ).forecast_layer_type
-                                for forecast_valid in inventory_df[
-                                    FORECAST_VALID
-                                ].unique()
-                            ]
-                        )
-                    ),
-                }
-            ),
-        },
-        variables={
-            variable: Variable(
-                properties=dict(
-                    dimensions=[
-                        "x",
-                        "y",
-                        REFERENCE_DATETIME,
-                        VALID_TIME,
-                        LEVEL,
-                        FORECAST_TYPE,
-                    ],
-                    type=VariableType.DATA,
-                    description=description,
-                    unit=unit,
-                    # experimental new field for defining the specific values of each
-                    # domain where this variable has data
-                    dimension_domains={
-                        LEVEL: list(group[LEVEL].unique()),
-                        FORECAST_TYPE: list(
+        datacube_ext.apply(
+            dimensions={
+                "x": Dimension(
+                    properties={
+                        "type": DimensionType.SPATIAL,
+                        "reference_system": region_config.item_crs.to_wkt(),
+                        "extent": [
+                            region_config.item_bbox_proj[0] + RESOLUTION_METERS / 2,
+                            region_config.item_bbox_proj[2] - RESOLUTION_METERS / 2,
+                        ],
+                        "axis": "x",
+                    }
+                ),
+                "y": Dimension(
+                    properties={
+                        "type": DimensionType.SPATIAL,
+                        "reference_system": region_config.item_crs.to_wkt(),
+                        "extent": [
+                            region_config.item_bbox_proj[1] + RESOLUTION_METERS / 2,
+                            region_config.item_bbox_proj[3] - RESOLUTION_METERS / 2,
+                        ],
+                        "axis": "y",
+                    }
+                ),
+                REFERENCE_DATETIME: Dimension(
+                    properties={
+                        "type": DimensionType.TEMPORAL,
+                        "extent": [
+                            cloud_provider_config.start_date.strftime(
+                                "%Y-%m-%dT%H:%M:%SZ"
+                            ),
+                            None,
+                        ],
+                        "step": "PT1H" if region == Region.conus else "PT3H",
+                    }
+                ),
+                VALID_TIME: Dimension(
+                    properties={
+                        "type": DimensionType.TEMPORAL,
+                        "extent": [
+                            cloud_provider_config.start_date.strftime(
+                                "%Y-%m-%dT%H:%M:%SZ"
+                            ),
+                            None,
+                        ],
+                        "step": "PT15M" if product == Product.subh else "PT1H",
+                    }
+                ),
+                # could be a z spatial dimension but the units are not consistent
+                LEVEL: Dimension(
+                    properties={
+                        "type": "atmospheric level",
+                        "description": (
+                            "The atmospheric level for which the forecast is applicable, "
+                            "e.g. surface, top of atmosphere, 100 m above ground, etc."
+                        ),
+                        "values": list(sorted(set(inventory_df[LEVEL].unique()))),
+                    }
+                ),
+                FORECAST_TYPE: Dimension(
+                    properties={
+                        "type": DimensionType.TEMPORAL,
+                        "description": (
+                            "Either point-in-time, periodic summary, or cumulative summary."
+                        ),
+                        "values": list(
                             set(
                                 [
                                     ForecastLayerType.from_str(
                                         forecast_valid
                                     ).forecast_layer_type
-                                    for forecast_valid in group[FORECAST_VALID].unique()
+                                    for forecast_valid in inventory_df[
+                                        FORECAST_VALID
+                                    ].unique()
                                 ]
                             )
                         ),
-                    },
+                    }
+                ),
+            },
+            variables={
+                variable: Variable(
+                    properties=dict(
+                        dimensions=[
+                            "x",
+                            "y",
+                            REFERENCE_DATETIME,
+                            VALID_TIME,
+                            LEVEL,
+                            FORECAST_TYPE,
+                        ],
+                        type=VariableType.DATA,
+                        description=description,
+                        unit=unit,
+                        # experimental new field for defining the specific values of each
+                        # domain where this variable has data
+                        dimension_domains={
+                            LEVEL: list(group[LEVEL].unique()),
+                            FORECAST_TYPE: list(
+                                set(
+                                    [
+                                        ForecastLayerType.from_str(
+                                            forecast_valid
+                                        ).forecast_layer_type
+                                        for forecast_valid in group[
+                                            FORECAST_VALID
+                                        ].unique()
+                                    ]
+                                )
+                            ),
+                        },
+                    )
                 )
-            )
-            for (variable, description, unit), group in variable_df.groupby(
-                level=[VARIABLE, DESCRIPTION, UNIT]
-            )
-        },
-    )
+                for (variable, description, unit), group in variable_df.groupby(
+                    level=[VARIABLE, DESCRIPTION, UNIT]
+                )
+            },
+        )
 
     # add render params if available
     if render_params := RENDER_PARAMS.get(product):

@@ -33,11 +33,18 @@ def create_noaahrrr_command(cli: Group) -> Command:
     @click.argument("product", type=click.STRING)
     @click.argument("cloud_provider", type=click.STRING)
     @click.argument("destination", type=click.STRING)
+    @click.option(
+        "--no-datacube",
+        is_flag=True,
+        default=False,
+        help="Exclude the datacube extension from the collection",
+    )
     def create_collection_command(
         region: str,
         product: str,
         cloud_provider: str,
         destination: str,
+        no_datacube: bool,
     ) -> None:
         """Creates a STAC Collection
 
@@ -50,6 +57,7 @@ def create_noaahrrr_command(cli: Group) -> Command:
             region=Region.from_str(region),
             product=Product.from_str(product),
             cloud_provider=CloudProvider.from_str(cloud_provider),
+            include_datacube_ext=not no_datacube,
         )
         collection.set_self_href(destination)
         collection.save_object()

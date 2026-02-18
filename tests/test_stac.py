@@ -82,6 +82,18 @@ def test_create_item(
     _ = json.dumps(item.to_dict())
 
 
+def test_create_collection_without_datacube_ext() -> None:
+    collection = stac.create_collection(
+        region=Region.conus,
+        product=Product.sfc,
+        cloud_provider=CloudProvider.aws,
+        include_datacube_ext=False,
+    )
+    collection.set_self_href(None)
+    collection.validate()
+    assert not any("datacube" in ext for ext in collection.stac_extensions)
+
+
 def test_create_item_with_collection() -> None:
     region = Region.conus
     product = Product.sfc
