@@ -1,7 +1,7 @@
 {
   "type": "Collection",
   "id": "noaa-hrrr-sfc-conus",
-  "stac_version": "1.1.0",
+  "stac_version": "1.0.0",
   "description": "The NOAA HRRR is a real-time 3km resolution, hourly updated, cloud-resolving, convection-allowing atmospheric model, initialized by 3km grids with 3km radar assimilation. Radar data is assimilated in the HRRR every 15 min over a 1-hour period adding further detail to that provided by the hourly data assimilation from the 13km radar-enhanced Rapid Refresh (RAP) system. This specific collection represents 2D surface levels for the conus region.",
   "links": [
     {
@@ -25,15 +25,16 @@
     {
       "rel": "item",
       "href": "./hrrr-conus-sfc-2024-05-10T12-FH0/hrrr-conus-sfc-2024-05-10T12-FH0.json",
-      "type": "application/geo+json"
+      "type": "application/json"
     },
     {
       "rel": "item",
       "href": "./hrrr-conus-sfc-2024-05-10T12-FH2/hrrr-conus-sfc-2024-05-10T12-FH2.json",
-      "type": "application/geo+json"
+      "type": "application/json"
     }
   ],
   "stac_extensions": [
+    "https://stac-extensions.github.io/item-assets/v1.0.0/schema.json",
     "https://stac-extensions.github.io/datacube/v2.2.0/schema.json"
   ],
   "item_assets": {
@@ -1376,9 +1377,9 @@
       "type": "temporal",
       "description": "Either point-in-time, periodic summary, or cumulative summary.",
       "values": [
-        "periodic_summary",
+        "point_in_time",
         "cumulative_summary",
-        "point_in_time"
+        "periodic_summary"
       ]
     }
   },
@@ -1793,8 +1794,8 @@
           "0.5-0.8 sigma layer"
         ],
         "forecast_type": [
-          "periodic_summary",
-          "point_in_time"
+          "point_in_time",
+          "periodic_summary"
         ]
       }
     },
@@ -2516,8 +2517,8 @@
           "263 K level"
         ],
         "forecast_type": [
-          "periodic_summary",
-          "point_in_time"
+          "point_in_time",
+          "periodic_summary"
         ]
       }
     },
@@ -3219,9 +3220,9 @@
           "surface"
         ],
         "forecast_type": [
-          "periodic_summary",
+          "point_in_time",
           "cumulative_summary",
-          "point_in_time"
+          "periodic_summary"
         ]
       }
     },
@@ -3464,7 +3465,7 @@
           -134.12142793280145,
           21.122192719272277,
           -60.891244531606546,
-          52.62870335266728
+          52.62870335266725
         ]
       ]
     },

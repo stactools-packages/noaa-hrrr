@@ -9,7 +9,9 @@ number as needed.
 
 ## [Unreleased]
 
-- Nothing
+## [1.0.1] - 2026-03-12
+
+- Downgrade pystac to <1.12 for the Microsoft Planetary Computer ([#43](https://github.com/stactools-packages/noaa-hrrr/pull/43))
 
 ## [1.0.0] - 2026-02-13
 
@@ -33,6 +35,7 @@ number as needed.
 - Item creation
 - `grib:layers` asset property for describing individual layers within a GRIB2 file
 
+[1.0.1]: <https://github.com/developmentseed/noaa-hrrr/releases/tag/1.0.1>
 [1.0.0]: <https://github.com/developmentseed/noaa-hrrr/releases/tag/1.0.0>
 [0.1.2]: <https://github.com/developmentseed/noaa-hrrr/releases/tag/0.1.2>
 [0.1.1]: <https://github.com/developmentseed/noaa-hrrr/releases/tag/0.1.1>

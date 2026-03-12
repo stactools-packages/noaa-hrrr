@@ -1,6 +1,6 @@
 [project]
 name = "stactools-noaa-hrrr"
-version = "1.0.0"
+version = "1.0.1"
 description = "NOAA High-Resolution Rapid Refresh (HRRR) stactools package"
 readme = "README.md"
 authors = [{ name = "Henry Rodman", email = "henry@developmentseed.org" }]
