@@ -19,7 +19,7 @@ from pystac.extensions.datacube import (
     Variable,
     VariableType,
 )
-from pystac.extensions.item_assets import AssetDefinition
+from pystac.extensions.item_assets import AssetDefinition, ItemAssetsExtension
 from pystac.item_collection import ItemCollection
 from pystac.provider import Provider, ProviderRole
 
@@ -302,7 +302,7 @@ def create_collection(
             "forecast_layer_type": forecast_layer_type.forecast_layer_type,
         }
 
-    collection.item_assets = assets
+    ItemAssetsExtension.ext(collection).item_assets = assets
 
     if include_datacube_ext:
         # define the datacube metadata using the inventory files for this
