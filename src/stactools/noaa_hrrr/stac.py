@@ -302,7 +302,7 @@ def create_collection(
             "forecast_layer_type": forecast_layer_type.forecast_layer_type,
         }
 
-    ItemAssetsExtension.ext(collection).item_assets = assets
+    ItemAssetsExtension.ext(collection, add_if_missing=True).item_assets = assets
 
     if include_datacube_ext:
         # define the datacube metadata using the inventory files for this
