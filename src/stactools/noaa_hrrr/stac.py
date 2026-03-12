@@ -8,7 +8,6 @@ from pystac import (
     Collection,
     Extent,
     Item,
-    ItemAssetDefinition,
     SpatialExtent,
     TemporalExtent,
 )
@@ -20,6 +19,7 @@ from pystac.extensions.datacube import (
     Variable,
     VariableType,
 )
+from pystac.extensions.item_assets import AssetDefinition
 from pystac.item_collection import ItemCollection
 from pystac.provider import Provider, ProviderRole
 
@@ -61,7 +61,7 @@ from stactools.noaa_hrrr.metadata import (
 
 GRIB2_MEDIA_TYPE = "application/wmo-GRIB2"
 NDJSON_MEDIA_TYPE = "application/x-ndjson"
-INDEX_ASSET_DEFINITION = ItemAssetDefinition(
+INDEX_ASSET_DEFINITION = AssetDefinition(
     {
         "type": NDJSON_MEDIA_TYPE,
         "roles": ["index"],
@@ -74,7 +74,7 @@ INDEX_ASSET_DEFINITION = ItemAssetDefinition(
 
 ITEM_BASE_ASSETS = {
     Product.sfc: {
-        ItemType.GRIB: ItemAssetDefinition(
+        ItemType.GRIB: AssetDefinition(
             {
                 "type": GRIB2_MEDIA_TYPE,
                 "roles": ["data"],
@@ -88,7 +88,7 @@ ITEM_BASE_ASSETS = {
         ItemType.INDEX: INDEX_ASSET_DEFINITION,
     },
     Product.subh: {
-        ItemType.GRIB: ItemAssetDefinition(
+        ItemType.GRIB: AssetDefinition(
             {
                 "type": GRIB2_MEDIA_TYPE,
                 "roles": ["data"],
@@ -103,7 +103,7 @@ ITEM_BASE_ASSETS = {
         ItemType.INDEX: INDEX_ASSET_DEFINITION,
     },
     Product.prs: {
-        ItemType.GRIB: ItemAssetDefinition(
+        ItemType.GRIB: AssetDefinition(
             {
                 "type": GRIB2_MEDIA_TYPE,
                 "roles": ["data"],
@@ -117,7 +117,7 @@ ITEM_BASE_ASSETS = {
         ItemType.INDEX: INDEX_ASSET_DEFINITION,
     },
     Product.nat: {
-        ItemType.GRIB: ItemAssetDefinition(
+        ItemType.GRIB: AssetDefinition(
             {
                 "type": GRIB2_MEDIA_TYPE,
                 "roles": ["data"],
